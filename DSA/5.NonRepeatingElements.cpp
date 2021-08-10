@@ -83,7 +83,6 @@ void UniqueElementInKthRepetition(vector<int> v){
         ans += (arr[i]%k) * pow(2,i);
     }
     cout<<ans;
-    
 
 }
 
