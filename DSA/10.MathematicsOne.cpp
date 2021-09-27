@@ -23,7 +23,6 @@ void trailingZerosInFactorial(int n){
     
 }
 
-
 vector<bool> seiveOfErathosthenes(int n){//10
     vector<bool> isPrime(n+1,true); //{11 elements all true}
     isPrime[0] = false; 
@@ -33,13 +32,13 @@ vector<bool> seiveOfErathosthenes(int n){//10
     for (int i = 2; i * i<= n; i++)
     {              //4           -> 6 ->8 ->10
                 // 6 --> 9
-        for (int j = 2*i; j <= n; j+=i)
+        for (int j = 2*i; j <= n; j+=i) //for optimisation use i*i
         {
             isPrime[j] = false;
         }   
     }
     return isPrime;
-    
+    //O(N log log N) --> O
 }
 
 void prime(int n){
@@ -58,23 +57,46 @@ void prime(int n){
         cout<<"not prime";
     }
 }
+
+int gcd(int a, int b){
+    //6,9
+    if(b == 0) return a;
+
+    return gcd(b, a%b); //(9,6)
+    //(6,3)-->//(3,0)--> return hua a ie 3
+}
+
+int Solution(int a, int b, int c) {
+    c=c%b;
+    int pos = c - 1;
+    
+    int items = a%b;
+    while(items > 0){
+        pos++;
+        items--;
+    }
+    return pos%b;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(0); cout.tie(0);
 
-    factorial(5);
-    trailingZerosInFactorial(5);
+    // factorial(5);
+    // trailingZerosInFactorial(5);
 
-    vector<bool> isPrime = seiveOfErathosthenes(20);
-    for (int i = 0; i <= 20; i++)
-    {
-        cout<<i<<" "<<isPrime[i]<<"\n";
-    }
+    // vector<bool> isPrime = seiveOfErathosthenes(20);
+    // for (int i = 0; i <= 20; i++)
+    // {
+    //     cout<<i<<" "<<isPrime[i]<<"\n";
+    // }
 
-    prime(4);
-    
+    // prime(4);
+    // cout<<"\n";
 
-    
+    // cout<<gcd(24,72);
+    cout<<Solution(19,10,18);
+
     return 0;
 }

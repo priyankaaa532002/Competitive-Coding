@@ -14,13 +14,14 @@ int main()
 
         int count = 0;
 
-        while(b>0){
-            if(a>0){
+        while((b>0 && a>0) || (b>0 && c>0)){
+            if(a>0 && b>0){
                 count++;
                 b--;
                 a--;
             }
-            if(c>0){
+            
+            if(c>0 && b>0){
                 count++;
                 b--;
                 c--;

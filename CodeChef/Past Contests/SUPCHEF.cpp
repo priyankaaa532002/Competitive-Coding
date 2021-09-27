@@ -7,15 +7,13 @@ int main()
     int t;
     cin>>t;
     while(t>0){
-        int n;
-        cin>>n;
-        int sum = 0;
-        while(n>0){
-            int ld = n % 10;
-            sum += ld;
-            n = n/10;
+        int m,n,k;
+        cin>>m>>n>>k;
+        if(m <= n*k){
+            cout<<"NO\n";
+        }else{
+            cout<<"YES\n";
         }
-        cout<<sum<<"\n";
         t--;
     }
     return 0;
