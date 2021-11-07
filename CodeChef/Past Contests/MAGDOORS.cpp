@@ -27,7 +27,7 @@ int main()
                     count++;
                 }
             }
-            cout<<count<<"\n";
+            cout<<count<<"\n";            
         }
         t--;
     }
