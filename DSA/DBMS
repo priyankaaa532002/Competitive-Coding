@@ -1,0 +1,103 @@
+create table sells(
+    medicine_name varchar(20),
+    license_no number(10),
+    constraint sells_pk primary key (medicine_name,license_no)
+);
+
+create table bill(
+    bill_id number(10) constraint bill_pk primary key,
+    paid_amount number(10),
+    added_time date,
+    due_date date NOT NULL,
+    total_fees number(10) NOT NULL,
+    patient_id number(10) NOT NULL,
+    hospital_id varchar(10) NOT NULL
+);
+
+
+create table medicine(
+    medicine_name varchar(20) constraint med_name_pk primary key,
+    company_name varchar(20) NOT NULL,
+    cost number(10) NOT NULL,
+    stock number(10) 
+);
+
+
+create table pharmacy(
+    license_no number(10) constraint li_no_pk primary key,
+    pharmacy_name varchar(20) NOT NULL,
+    pharmacy_contact_number number(10),
+    hospital_id varchar(10) NOT NULL
+);
+
+
+
+
+
+//constraints
+alter table bill add constraint bill_p_id_fk foreign key(patient_id) references patient;
+alter table perform_tests add constraint perform_tests_p_id_fk foreign key(p_id) references patient;
+alter table visits add constraint visits_p_id_fk foreign key (p_id) references patient;
+
+alter table sells add constraint sells_license_no_fk foreign key(license_no) references pharmacy;
+alter table chemist add constraint chemist_license_no_fk foreign key(license_no) references pharmacy;
+
+alter table sells add constraint sells_medicine_name_fk foreign key(medicine_name) references medicine;
+
+
+
+
+
+
+
+insert into medicine values ('Lexapro', 'Lupin Limited', 4000, 20);
+insert into medicine values ('Clonazepam', 'Cipla Limited', 2000, 98);
+insert into medicine values ('Otezla', 'Cadila Ltd', 7200, 25);
+insert into medicine values ('Januvia', 'AuroPharma', 1000,77);
+insert into medicine values ('Entresto', 'Sun Limited', 450,82);
+insert into medicine values ('Ativan', 'Cipla Limited', 2100, 17);
+insert into medicine values ('Crocin', 'Lupin Limited', 100, 200);
+
+insert into sells values ('Crocin', 12345);
+insert into sells values ('Ativan', 12345);
+insert into sells values ('Otezla', 12345);
+insert into sells values ('Januvia', 12345);
+insert into sells values ('Crocin', 123456);
+insert into sells values ('Lexapro', 123456);
+insert into sells values ('Entresto', 123456);
+insert into sells values ('Ativan', 123456);
+insert into sells values ('Otezla', 123456);
+insert into sells values ('Otezla', 1234567);
+insert into sells values ('Clonazepam', 1234567):
+insert into sells values('Januvia', 1234567);
+insert into sells values ('Ativan', 1234567);
+
+insert into bill values (123, 3000, to_timestamp ('10:30', 'hh24:mi' ), to_date ('09-07-2021', 'dd-mm-yyyy'), to_date ('29-10-2021', 'dd-mm-yyyy'),5000, 101, 'AMD1');
+insert into bill values (124, 3500, to_timestamp ('14:40', 'hh24:mi'), to_date ('29-06-2021', 'da-m-yyyy'), to_date('19-10-2021','dd-mm-yyyy'), 7000, 102, 'AMD1');
+insert into bill values (125,4000, to_timestamp ('19:30', 'hh24:mi'), to_date ('06-02-2020', 'dd-mm-yyyy'), to_date ('29-11-2020', 'dd-mm-yyyy'), 5000, 103, 'AMD2');
+insert into bill values (126,5390, to_timestamp ('14:56', 'hh24:mi'), to_date('14-06-2021','dd-mm-yyyy'),to_date ('09-11-2021','dd-mm-yyyy'), 6500, 104, 'AMD2');
+insert into bill values (127,4200, to_timestamp ('23:10', 'hh24:mi'), to_date ('22-04-2021','dd-mm-yyyy'), to_date ('19-12-2021','dd-mm-yyyy'), 10000, 105, 'SURI');
+insert into bill values (128, 4300, to_timestamp ('15:30', 'hh24:mi'), to_date('21-06-2021', 'dd-mm-yyyy'),to_date('21-11-2021','dd-mm-yyyy'), 7500, 106, 'SURI');
+
+insert into visits values ('AMD1', 101, 'high fever', to_date ('09-07-2021', 'dd-mm-yyyy'), to_timestamp ('10:40', 'hh24:mi')); 
+insert into visits values ('AMD1', 102, 'vomiting', to_date ('30-06-2021', 'dd-mm-yyyy'), to_timestamp ('11:30', 'hh24:mi')); 
+insert into visits values ('AMD2', 103, 'chicken pox', to_date ('06-02-2021','dd-mun-yyyy'),to_timestamp ('20:30', 'hh24:mi')); 
+insert into visits values ('AMD2', 104, 'corona', to_date('18-06-2021', 'dd-mm-yyyy'), to_timestamp ('16:00', 'hh24:mi')); 
+insert into visits values ('SUR1', 105, 'brain damage', to_date('23-04-2021', 'dd-mm-yyyy'), to_timestamp ('23:50', 'hh24:mi')); 
+insert into visits values ('SURI', 106, 'food poison', to_date ('121-06-2021', 'dd-mm-yyyy'),to_timestamp ('19:00', 'hh24:mi'));
+
+insert into perform_tests values (101, 114, 'AMD1', 500, 'COVID TEST', to_date('09-07-2021', 'dd-mm-yyyy'), "Antibody"); 
+insert into perform_tests values (103, 131, 'AMD2', 550, 'POLIO TEST', to_date('09-07-2021', 'dd-mm-yyyy'), "Antibody"); 
+insert into perform_tests values (105, 223, 'AMD1',9000, 'MRI SCAN', to_date ('09-07-2021', 'dd-mm-yyyy'), "Full MRI"); 
+insert into perform_tests values (106, 121, 'AMD1',780, 'BLOOD TEST', to_date('21-06-2021', 'dd-mm-yyyy'), "CBC TEST"); 
+insert into perform_tests values (104, 131, 'AMD2', 3000, 'FULL BODY', to_date('18-06-2021', 'dd-mm-yyyy'), "Full MRI"); 
+insert into perform_tests values (102, 115, 'AMD1', 750, 'FULL BODY', to_date ('1-07-2021', 'dd-mm-yyyy'), "Full MRI");
+
+
+
+
+
+
+
+
+

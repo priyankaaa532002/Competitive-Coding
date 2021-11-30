@@ -55,31 +55,48 @@ void anagram(char *word1, char *word2)
 //ABC, BCA, ACB, BAC, CAB, CBA
 //3 - > 3!==>6
 
-void perm(char *word,int k){
+void perm(char *word, int k)
+{
     static int a[10] = {0};
     static char res[10];
     int i;
 
-    if (word[k]=='\0')
+    if (word[k] == '\0')
     {
-        res[k]='\0';
-        cout<<res<<"\n";
+        res[k] = '\0';
+        cout << res << "\n";
     }
-    for ( i = 0; word[i]!='\0'; i++)
+    for (i = 0; word[i] != '\0'; i++)
     {
-        if (a[i]==0)
+        if (a[i] == 0)
         {
-            res[k]=word[i];
+            res[k] = word[i];
             a[i] = 1;
-            perm(word,k+1);
-            a[i]= 0;
+            perm(word, k + 1);
+            a[i] = 0;
         }
     }
 }
 
-void perm1(){
-
+//PERMUTATION OF STRING USING SWAPPING
+void perm1(char s[], int l, int h)
+{
+    int i;
+    if (l == h)
+    {
+        cout << s << "\n";
+    }
+    else
+    {
+        for (i = l; i <= h; i++)
+        {
+            swap(s[l], s[i]);
+            perm1(s, l + 1, h);
+            swap(s[l], s[i]);
+        }
+    }
 }
+
 int main()
 {
 
@@ -264,7 +281,7 @@ int main()
     //     }
     // }
 
-    anagram("decimal","medical");
-    perm("blo",0);
+    anagram("decimal", "medical");
+    perm("blo", 0);
     return 0;
 }
