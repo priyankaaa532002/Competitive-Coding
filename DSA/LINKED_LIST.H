@@ -49,9 +49,9 @@ void create2(int a[], int n)
     }
 }
 
-void display(Node *p)
+void display()
 {
-    //Node *p = first;
+    Node *p = first;
     while (p != NULL)
     {
         cout << p->data << " ";
@@ -465,18 +465,6 @@ void middle(){
     }
     cout<<p->data<<"\n";
 }
-
-void moveToFront(Node *root){
-    Node *p = root;
-    while(p->next->next!=NULL){
-        p = p->next;
-    }
-    p->next->next = root;
-    root = p->next;
-    p->next = NULL;
-    display(root);
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -485,8 +473,8 @@ int main()
     int a[] = {1, 2, 4, 7, 9};
     create(a, 5);
 
-    // int b[] = {3,5,6,8,10};
-    // create2(b,5);
+    int b[] = {3,5,6,8,10};
+    create2(b,5);
     // //display();
     // displayRec(first);
     // cout<<"\n"<<count(first)<<"\n";
@@ -507,9 +495,8 @@ int main()
     //reversingALinkedList3(NULL,first);
     //concatenation();
     //merge();
-    // cout<<isLoop(first)<<"\n";
-    moveToFront(first);
-    //display();
+    cout<<isLoop(first)<<"\n";
+    display();
 
     return 0;
 }
